@@ -1,9 +1,20 @@
-<?php
-/**
- * herniated-disc-treatment.php — علاج الانزلاق الغضروفي
- *
- * Content lives in includes/services-data.php; the layout lives in
- * includes/service-page.php. This file only names the service.
- */
-$slug = 'herniated-disc-treatment';
-require __DIR__ . '/includes/service-page.php';
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>علاج الانزلاق الغضروفي | الدكتور أرون ساروهـا — جراحة العمود الفقري</title>
+<meta name="description" content="تشخيص وعلاج انفتاق الأقراص الغضروفية الضاغطة على الأعصاب بالأساليب التحفظية والجراحية طفيفة التوغل.">
+<link rel="canonical" href="https://drarunsaroha.example/herniated-disc-treatment">
+</helmet>
+<dc-import name="ServicePage" slug="herniated-disc-treatment" hint-size="100%,100%"></dc-import>
+</x-dc>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="../support.js"></script>
+<script src="support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -38,7 +38,7 @@
 
   <header style="position:sticky;top:14px;z-index:60;max-width:1266px;margin:14px auto 0;background:linear-gradient(180deg,rgba(14,45,82,0.97),rgba(12,35,64,0.95));backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.12);border-radius:20px;box-shadow:0 16px 34px -16px rgba(12,35,64,.5);">
     <div style="max-width:1240px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:20px;">
-      <a href="Dr%20Arun%20Saroha.dc.html" style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
+      <a href="index.php" style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
         <span style="width:44px;height:44px;border-radius:12px;background:linear-gradient(160deg,#1466b8,#0c2340);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -8px rgba(20,102,184,.6);">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3c-.9 2.4-2.6 3.4-4.6 3.7C5.6 7 5 8 5 9.6c0 3.1 2.6 5.9 7 8.9 4.4-3 7-5.8 7-8.9 0-1.6-.6-2.6-2.4-2.9C14.6 6.4 12.9 5.4 12 3Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 11h1.5l1 2 1.5-4 1 2H15" stroke="#7ec6ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
@@ -53,7 +53,7 @@
         </sc-for>
       </nav>
       <div style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
-        <a href="Dr%20Arun%20Saroha.dc.html#appointment" style="background:linear-gradient(180deg,#1466b8,#0e4d8c);color:#fff;padding:11px 22px;border-radius:10px;font-family:Cairo;font-weight:800;font-size:14.5px;white-space:nowrap;box-shadow:0 10px 22px -10px rgba(20,102,184,.65);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">احجز موعدك</a>
+        <a href="index.php#appointment" style="background:linear-gradient(180deg,#1466b8,#0e4d8c);color:#fff;padding:11px 22px;border-radius:10px;font-family:Cairo;font-weight:800;font-size:14.5px;white-space:nowrap;box-shadow:0 10px 22px -10px rgba(20,102,184,.65);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">احجز موعدك</a>
         <button class="dr-hamburger" onClick="{{ toggleMenu }}" aria-label="القائمة" aria-expanded="{{ menuOpenStr }}" aria-controls="dr-mobile-nav" style="display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:rgba(255,255,255,.1);align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
@@ -83,9 +83,9 @@
       <div style="position:absolute;top:-120px;left:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(126,198,255,.16),transparent 70%);"></div>
       <div class="svc-hero-inner" style="max-width:1240px;margin:0 auto;position:relative;">
         <nav aria-label="مسار التصفح" class="svc-hero-crumb" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13.5px;color:#a9c3e0;font-family:Cairo;font-weight:700;margin-bottom:30px;">
-          <a href="Dr%20Arun%20Saroha.dc.html" style="color:#a9c3e0;" style-hover="color:#fff;">الرئيسية</a>
+          <a href="index.php" style="color:#a9c3e0;" style-hover="color:#fff;">الرئيسية</a>
           <span style="opacity:.6;">←</span>
-          <a href="services.dc.html" style="color:#a9c3e0;" style-hover="color:#fff;">الخدمات</a>
+          <a href="services.php" style="color:#a9c3e0;" style-hover="color:#fff;">الخدمات</a>
           <span style="opacity:.6;">←</span>
           <span style="color:#fff;">{{ title }}</span>
         </nav>
@@ -95,7 +95,7 @@
             <h1 class="svc-hero-h1" style="font-family:Cairo;font-weight:900;font-size:clamp(32px,4.8vw,52px);line-height:1.15;color:#fff;margin:18px 0 0;text-wrap:balance;">{{ title }}</h1>
             <p class="svc-hero-lead" style="font-size:clamp(17px,1.7vw,20px);color:#cfe0f2;margin:20px 0 0;text-wrap:pretty;">{{ lead }}</p>
             <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;">
-              <a href="Dr%20Arun%20Saroha.dc.html#appointment" style="background:linear-gradient(180deg,#2a8ee0,#0e4d8c);color:#fff;padding:15px 30px;border-radius:12px;font-family:Cairo;font-weight:800;font-size:16px;box-shadow:0 14px 30px -12px rgba(20,102,184,.8);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">احجز استشارتك الآن</a>
+              <a href="index.php#appointment" style="background:linear-gradient(180deg,#2a8ee0,#0e4d8c);color:#fff;padding:15px 30px;border-radius:12px;font-family:Cairo;font-weight:800;font-size:16px;box-shadow:0 14px 30px -12px rgba(20,102,184,.8);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">احجز استشارتك الآن</a>
               <a href="https://wa.me/917860000705" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);color:#fff;padding:15px 26px;border-radius:12px;font-family:Cairo;font-weight:800;font-size:16px;border:1px solid rgba(255,255,255,.3);" style-hover="background:rgba(255,255,255,.2);">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#39d878"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .3-3.4-.7-2.9-1.2-4.7-4.2-4.9-4.4-.1-.2-1.1-1.5-1.1-2.9 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5s-.2.4-.3.6c-.2.2-.3.4-.5.6-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.9-.1 1.5Z"/></svg>
                 واتساب
@@ -379,7 +379,7 @@
               <div style="display:flex;align-items:flex-start;gap:9px;font-size:14px;color:#3c4c5f;"><span style="width:6px;height:6px;border-radius:50%;background:#1466b8;flex-shrink:0;margin-top:8px;"></span>رعاية مرضى من أكثر من 50 دولة حول العالم</div>
             </div>
             <p style="font-size:15.5px;color:#4a5a6d;margin:22px 0 0;line-height:1.9;">من خلال رؤيته والتزامه بأحدث التقنيات الجراحية والنهج الذي يركّز على المريض، يواصل الدكتور أرون ساروهـا تقديم رعاية عصبية متميزة للمرضى من الهند ودول الخليج والعالم.</p>
-            <a href="Dr%20Arun%20Saroha.dc.html#about" style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;background:linear-gradient(90deg,#1466b8,#0e4d8c);color:#fff;padding:14px 30px;border-radius:999px;font-family:Cairo;font-weight:800;font-size:15px;box-shadow:0 14px 30px -12px rgba(20,102,184,.6);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">المزيد عن الدكتور <span style="font-size:17px;">←</span></a>
+            <a href="index.php#about" style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;background:linear-gradient(90deg,#1466b8,#0e4d8c);color:#fff;padding:14px 30px;border-radius:999px;font-family:Cairo;font-weight:800;font-size:15px;box-shadow:0 14px 30px -12px rgba(20,102,184,.6);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">المزيد عن الدكتور <span style="font-size:17px;">←</span></a>
           </div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:12px;margin-top:22px;background:#eef4fb;border:1px solid #dbe6f1;border-radius:14px;padding:18px 20px;">
@@ -516,7 +516,7 @@
         <h2 style="font-family:Cairo;font-weight:900;font-size:clamp(26px,3.4vw,40px);color:#fff;margin:0;">هل تحتاج إلى استشارة متخصصة؟</h2>
         <p style="font-size:18px;color:#cfe0f2;margin:16px 0 0;">احجز موعدك مع الدكتور أرون ساروهـا اليوم واحصل على تقييم دقيق لحالتك.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px;">
-          <a href="Dr%20Arun%20Saroha.dc.html#appointment" style="background:linear-gradient(180deg,#2a8ee0,#0e4d8c);color:#fff;padding:15px 32px;border-radius:12px;font-family:Cairo;font-weight:800;font-size:16px;box-shadow:0 14px 30px -12px rgba(20,102,184,.7);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">احجز استشارتك الآن</a>
+          <a href="index.php#appointment" style="background:linear-gradient(180deg,#2a8ee0,#0e4d8c);color:#fff;padding:15px 32px;border-radius:12px;font-family:Cairo;font-weight:800;font-size:16px;box-shadow:0 14px 30px -12px rgba(20,102,184,.7);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">احجز استشارتك الآن</a>
           <a href="https://wa.me/917860000705" style="background:#20b858;color:#fff;padding:15px 30px;border-radius:12px;font-family:Cairo;font-weight:800;font-size:16px;" style-hover="filter:brightness(1.06);">تواصل عبر واتساب</a>
         </div>
       </div>
@@ -539,10 +539,10 @@
       <div>
         <b style="font-family:Cairo;font-weight:800;font-size:15px;color:#fff;">روابط سريعة</b>
         <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;">
-          <a href="Dr%20Arun%20Saroha.dc.html#about" style="color:#a8bdd6;font-size:14.5px;" style-hover="color:#fff;">عن الدكتور</a>
-          <a href="services.dc.html" style="color:#a8bdd6;font-size:14.5px;" style-hover="color:#fff;">الخدمات</a>
-          <a href="Dr%20Arun%20Saroha.dc.html#international" style="color:#a8bdd6;font-size:14.5px;" style-hover="color:#fff;">المرضى الدوليون</a>
-          <a href="Dr%20Arun%20Saroha.dc.html#blog" style="color:#a8bdd6;font-size:14.5px;" style-hover="color:#fff;">المقالات الطبية</a>
+          <a href="index.php#about" style="color:#a8bdd6;font-size:14.5px;" style-hover="color:#fff;">عن الدكتور</a>
+          <a href="services.php" style="color:#a8bdd6;font-size:14.5px;" style-hover="color:#fff;">الخدمات</a>
+          <a href="index.php#international" style="color:#a8bdd6;font-size:14.5px;" style-hover="color:#fff;">المرضى الدوليون</a>
+          <a href="index.php#blog" style="color:#a8bdd6;font-size:14.5px;" style-hover="color:#fff;">المقالات الطبية</a>
         </div>
       </div>
       <div>
@@ -569,7 +569,7 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="#20b858"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .3-3.4-.7-2.9-1.2-4.7-4.2-4.9-4.4-.1-.2-1.1-1.5-1.1-2.9 0-1.3.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.6.8 2 .9 2.1.1.1.1.3 0 .5s-.2.4-.3.6c-.2.2-.3.4-.5.6-.1.1-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.9-.1 1.5Z"/></svg>
       واتساب
     </a>
-    <a href="Dr%20Arun%20Saroha.dc.html#appointment" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:11px 4px;font-family:Cairo;font-weight:800;font-size:12px;color:#fff;background:linear-gradient(180deg,#1466b8,#0e4d8c);">
+    <a href="index.php#appointment" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:11px 4px;font-family:Cairo;font-weight:800;font-size:12px;color:#fff;background:linear-gradient(180deg,#1466b8,#0e4d8c);">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 2v3m8-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" stroke="#fff" stroke-width="1.6"/></svg>
       احجز موعد
     </a>
@@ -582,12 +582,12 @@ class Component extends DCLogic {
   state = { svc: null, related: [], openFaq: 0, menuOpen: false };
 
   nav = [
-    { label: 'عن الدكتور', href: 'Dr%20Arun%20Saroha.dc.html#about' },
-    { label: 'الخدمات', href: 'services.dc.html' },
-    { label: 'العلاجات والعمليات', href: 'services.dc.html' },
-    { label: 'المرضى الدوليون', href: 'Dr%20Arun%20Saroha.dc.html#international' },
-    { label: 'المقالات الطبية', href: 'Dr%20Arun%20Saroha.dc.html#blog' },
-    { label: 'تواصل معنا', href: 'Dr%20Arun%20Saroha.dc.html#appointment' },
+    { label: 'عن الدكتور', href: 'index.php#about' },
+    { label: 'الخدمات', href: 'services.php' },
+    { label: 'العلاجات والعمليات', href: 'services.php' },
+    { label: 'المرضى الدوليون', href: 'index.php#international' },
+    { label: 'المقالات الطبية', href: 'index.php#blog' },
+    { label: 'تواصل معنا', href: 'index.php#appointment' },
   ];
 
   why = [
@@ -750,7 +750,7 @@ class Component extends DCLogic {
       })(),
       ytChannel: this.ytChannel,
       why: this.why,
-      related: this.state.related.map(r => ({ title: r.title, href: r.slug + '.dc.html', hasImg: !!r.img, noImg: !r.img, img: r.img || '' })),
+      related: this.state.related.map(r => ({ title: r.title, href: r.slug + '.php', hasImg: !!r.img, noImg: !r.img, img: r.img || '' })),
       faqs: svc ? svc.faqs.map((f, i) => ({
         q: f.q, a: f.a, isOpen: openFaq === i, sign: openFaq === i ? '−' : '+',
         answerId: 'faq-answer-' + i,

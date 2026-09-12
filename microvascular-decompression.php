@@ -1,9 +1,20 @@
-<?php
-/**
- * microvascular-decompression.php — جراحة تخفيف الضغط الوعائي الدقيق
- *
- * Content lives in includes/services-data.php; the layout lives in
- * includes/service-page.php. This file only names the service.
- */
-$slug = 'microvascular-decompression';
-require __DIR__ . '/includes/service-page.php';
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>جراحة تخفيف الضغط الوعائي الدقيق | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
+<meta name="description" content="علاج جراحي دقيق لألم العصب الثلاثي التوائم وتشنج الوجه النصفي الناتج عن ضغط وعائي على العصب.">
+<link rel="canonical" href="https://drarunsaroha.example/microvascular-decompression">
+</helmet>
+<dc-import name="ServicePage" slug="microvascular-decompression" hint-size="100%,100%"></dc-import>
+</x-dc>
+</body>
+</html>

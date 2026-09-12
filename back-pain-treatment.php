@@ -1,9 +1,20 @@
-<?php
-/**
- * back-pain-treatment.php — علاج آلام الظهر
- *
- * Content lives in includes/services-data.php; the layout lives in
- * includes/service-page.php. This file only names the service.
- */
-$slug = 'back-pain-treatment';
-require __DIR__ . '/includes/service-page.php';
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>علاج آلام الظهر | الدكتور أرون ساروهـا — جراحة العمود الفقري</title>
+<meta name="description" content="تشخيص وعلاج آلام الظهر المزمنة والحادة مع الدكتور أرون ساروهـا بأحدث الأساليب التحفظية والجراحية طفيفة التوغل.">
+<link rel="canonical" href="https://drarunsaroha.example/back-pain-treatment">
+</helmet>
+<dc-import name="ServicePage" slug="back-pain-treatment" hint-size="100%,100%"></dc-import>
+</x-dc>
+</body>
+</html>

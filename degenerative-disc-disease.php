@@ -1,9 +1,20 @@
-<?php
-/**
- * degenerative-disc-disease.php — علاج مرض تنكّس الغضاريف
- *
- * Content lives in includes/services-data.php; the layout lives in
- * includes/service-page.php. This file only names the service.
- */
-$slug = 'degenerative-disc-disease';
-require __DIR__ . '/includes/service-page.php';
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>علاج مرض تنكّس الغضاريف | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
+<meta name="description" content="تشخيص وعلاج تآكل الغضاريف بين الفقرات الذي يسبب الألم وتقييد الحركة.">
+<link rel="canonical" href="https://drarunsaroha.example/degenerative-disc-disease">
+</helmet>
+<dc-import name="ServicePage" slug="degenerative-disc-disease" hint-size="100%,100%"></dc-import>
+</x-dc>
+</body>
+</html>

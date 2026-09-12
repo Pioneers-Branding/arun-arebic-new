@@ -1,9 +1,20 @@
-<?php
-/**
- * brain-tumor-surgery.php — جراحة أورام الدماغ
- *
- * Content lives in includes/services-data.php; the layout lives in
- * includes/service-page.php. This file only names the service.
- */
-$slug = 'brain-tumor-surgery';
-require __DIR__ . '/includes/service-page.php';
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>جراحة أورام الدماغ | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
+<meta name="description" content="استئصال أورام الدماغ الحميدة والخبيثة بتقنيات دقيقة تحافظ على الأنسجة السليمة.">
+<link rel="canonical" href="https://drarunsaroha.example/brain-tumor-surgery">
+</helmet>
+<dc-import name="ServicePage" slug="brain-tumor-surgery" hint-size="100%,100%"></dc-import>
+</x-dc>
+</body>
+</html>

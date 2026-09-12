@@ -79,7 +79,7 @@
     } catch {
     }
     const base = p.split("/").pop() || "Root";
-    return base.replace(/\.dc\.html$/, "").replace(/\.html?$/, "") || "Root";
+    return base.replace(/\.php$/, "").replace(/\.html?$/, "") || "Root";
   }
 
   // src/boot.ts
@@ -132,7 +132,7 @@
   var FULL_PAGE_CSS = "html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}";
   function rootNameForDocument(doc, loc) {
     let bootPath = loc.pathname || "";
-    if (!/\.dc\.html?$/i.test(safeDecode(bootPath))) {
+    if (!/\.php$/i.test(safeDecode(bootPath))) {
       try {
         bootPath = new URL(doc.baseURI || "/").pathname;
       } catch {
@@ -1643,7 +1643,7 @@
       const r = registry.get(name);
       if (r.fetched) return;
       r.fetched = true;
-      const url = COMPONENT_DIR + "/" + encodeURIComponent(name) + ".dc.html";
+      const url = COMPONENT_DIR + "/" + encodeURIComponent(name) + ".php";
       const res = window.__resources;
       const pre = res ? res[url] : void 0;
       const target = typeof pre === "string" && pre ? pre : url;

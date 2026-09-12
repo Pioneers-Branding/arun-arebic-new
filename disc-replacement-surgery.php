@@ -1,9 +1,20 @@
-<?php
-/**
- * disc-replacement-surgery.php — جراحة استبدال الغضروف
- *
- * Content lives in includes/services-data.php; the layout lives in
- * includes/service-page.php. This file only names the service.
- */
-$slug = 'disc-replacement-surgery';
-require __DIR__ . '/includes/service-page.php';
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>جراحة استبدال الغضروف | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
+<meta name="description" content="استبدال الغضروف التالف بغضروف صناعي يحافظ على حركة العمود الفقري الطبيعية.">
+<link rel="canonical" href="https://drarunsaroha.example/disc-replacement-surgery">
+</helmet>
+<dc-import name="ServicePage" slug="disc-replacement-surgery" hint-size="100%,100%"></dc-import>
+</x-dc>
+</body>
+</html>

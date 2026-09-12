@@ -1,9 +1,20 @@
-<?php
-/**
- * hydrocephalus-treatment.php — علاج استسقاء الدماغ
- *
- * Content lives in includes/services-data.php; the layout lives in
- * includes/service-page.php. This file only names the service.
- */
-$slug = 'hydrocephalus-treatment';
-require __DIR__ . '/includes/service-page.php';
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>علاج استسقاء الدماغ | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
+<meta name="description" content="علاج تراكم السائل الدماغي الشوكي عبر تقنيات حديثة للأطفال والبالغين.">
+<link rel="canonical" href="https://drarunsaroha.example/hydrocephalus-treatment">
+</helmet>
+<dc-import name="ServicePage" slug="hydrocephalus-treatment" hint-size="100%,100%"></dc-import>
+</x-dc>
+</body>
+</html>
