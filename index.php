@@ -4,7 +4,48 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="support.js"></script>
+<style>
+  .dr-hero-desktop { display: flex; }
+  .dr-hero-mobile { display: none; }
+  @media (max-width: 768px) {
+    .dr-hero-desktop { display: none !important; }
+    .dr-hero-mobile { display: flex !important; }
+  }
+</style>
+
+<style>
+  /* Global Mobile Spacing Fixes */
+  @media (max-width: 768px) {
+    section {
+      padding-top: 48px !important;
+      padding-bottom: 48px !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    /* Don't override hero padding if it's special, but ensure it's not too large */
+    .dr-hero-mobile {
+      padding-top: 60px !important;
+      padding-bottom: 40px !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      min-height: 80vh !important;
+    }
+    /* Reduce large gaps in flex/grid */
+    div[style*="gap:56px"], div[style*="gap: 56px"] { gap: 32px !important; }
+    div[style*="gap:64px"], div[style*="gap: 64px"] { gap: 32px !important; }
+    div[style*="gap:48px"], div[style*="gap: 48px"] { gap: 24px !important; }
+    
+    /* Reduce large top margins */
+    div[style*="margin-top:56px"], h2[style*="margin-top:56px"] { margin-top: 32px !important; }
+    div[style*="margin-top:64px"], h2[style*="margin-top:64px"] { margin-top: 32px !important; }
+    div[style*="margin-top:96px"], h2[style*="margin-top:96px"] { margin-top: 48px !important; }
+    
+    /* Adjust font sizes slightly if they are huge */
+    h2 { font-size: clamp(24px, 6vw, 32px) !important; }
+  }
+</style>
 </head>
+
 <body>
 <x-dc>
 <helmet>
@@ -72,9 +113,9 @@
 
   <a id="top"></a>
 
-  <!-- ============ HERO ============ -->
-  <section style="position:relative;min-height:min(80vh,700px);display:flex;align-items:center;overflow:hidden;background:#0c2340;">
-    <div style="position:absolute;inset:0;background:url('../assets/hero-bg.png') left top/cover no-repeat;"></div>
+  <!-- ============ HERO DESKTOP ============ -->
+  <section class="dr-hero-desktop" style="position:relative;min-height:min(80vh,700px);align-items:center;overflow:hidden;background:#0c2340;">
+    <div style="position:absolute;inset:0;background:url('assets/hero-bg.png') left top/cover no-repeat;"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent 32%,rgba(9,26,48,.4) 56%,rgba(8,23,44,.85) 100%);"></div>
     <div style="position:relative;max-width:1240px;margin:0 auto;width:100%;padding:56px 24px;display:flex;justify-content:flex-start;">
       <div style="max-width:560px;animation:drFade .7s ease both;text-shadow:0 1px 12px rgba(6,18,36,.4);">
@@ -98,6 +139,29 @@
               <span style="font-family:Cairo;font-weight:700;font-size:14.5px;color:#eaf4ff;">{{ t }}</span>
             </div>
           </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HERO MOBILE ============ -->
+  <section class="dr-hero-mobile" style="position:relative;min-height:90vh;align-items:center;overflow:hidden;background:#0c2340;padding-top:60px;">
+    <div style="position:absolute;inset:0;background:url('assets/hero-bg.png') left center/cover no-repeat;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(8,23,44,.95) 10%, rgba(9,26,48,.6) 50%, rgba(8,23,44,.4) 100%);"></div>
+    <div style="position:relative;width:100%;padding:40px 24px;display:flex;flex-direction:column;justify-content:flex-end;height:100%;">
+      <div style="animation:drFade .7s ease both;text-shadow:0 1px 12px rgba(6,18,36,.4);">
+        <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#eaf4ff;font-family:Cairo;font-weight:800;font-size:12px;padding:7px 15px;border-radius:999px;backdrop-filter:blur(6px);text-shadow:none;">
+          <span style="width:7px;height:7px;border-radius:50%;background:#4fd6c4;"></span> خبرة جراحية عالمية في المخ والأعصاب
+        </span>
+        <h1 style="font-family:Cairo;font-weight:900;font-size:clamp(28px,8vw,36px);line-height:1.2;color:#fff;margin:16px 0 0;">
+          رعاية متقدمة للدماغ والعمود الفقري <span style="color:#7ec6ff;">بخبرة جراحية عالمية</span>
+        </h1>
+        <p style="font-size:16px;color:#d3e3f5;margin:16px 0 0;">
+          الدكتور أرون ساروهـا، استشاري جراحة المخ والأعصاب والعمود الفقري، يقدّم رعاية متخصصة تعتمد على أحدث التقنيات والمعايير الطبية العالمية.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:24px;">
+          <a href="#appointment" style="background:linear-gradient(180deg,#2a8ee0,#0e4d8c);color:#fff;padding:15px;border-radius:12px;font-family:Cairo;font-weight:800;font-size:16px;text-align:center;box-shadow:0 14px 34px -12px rgba(20,102,184,.8);text-shadow:none;">احجز استشارتك الآن</a>
+          <a href="#about" style="background:rgba(255,255,255,.1);color:#fff;padding:15px;border-radius:12px;font-family:Cairo;font-weight:800;font-size:16px;text-align:center;border:1px solid rgba(255,255,255,.35);text-shadow:none;">تعرّف على الدكتور</a>
         </div>
       </div>
     </div>

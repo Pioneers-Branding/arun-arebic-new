@@ -4,7 +4,40 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="support.js"></script>
+
+<style>
+  /* Global Mobile Spacing Fixes */
+  @media (max-width: 768px) {
+    section {
+      padding-top: 48px !important;
+      padding-bottom: 48px !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    /* Don't override hero padding if it's special, but ensure it's not too large */
+    .dr-hero-mobile {
+      padding-top: 60px !important;
+      padding-bottom: 40px !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      min-height: 80vh !important;
+    }
+    /* Reduce large gaps in flex/grid */
+    div[style*="gap:56px"], div[style*="gap: 56px"] { gap: 32px !important; }
+    div[style*="gap:64px"], div[style*="gap: 64px"] { gap: 32px !important; }
+    div[style*="gap:48px"], div[style*="gap: 48px"] { gap: 24px !important; }
+    
+    /* Reduce large top margins */
+    div[style*="margin-top:56px"], h2[style*="margin-top:56px"] { margin-top: 32px !important; }
+    div[style*="margin-top:64px"], h2[style*="margin-top:64px"] { margin-top: 32px !important; }
+    div[style*="margin-top:96px"], h2[style*="margin-top:96px"] { margin-top: 48px !important; }
+    
+    /* Adjust font sizes slightly if they are huge */
+    h2 { font-size: clamp(24px, 6vw, 32px) !important; }
+  }
+</style>
 </head>
+
 <body>
 <x-dc>
 <helmet>
