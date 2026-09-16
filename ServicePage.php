@@ -395,7 +395,7 @@
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-bottom:40px;">
           <sc-for list="{{ trustGals }}" as="g" hint-placeholder-count="4">
           <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-              <img src="{{ g }}" alt="صورة طبية" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+              <img src="{{ g }}" alt="صورة طبية" style="width:100%;height:100%;object-fit:cover;object-position:center;" loading="lazy">
           </a>
           </sc-for>
         </div>
@@ -409,7 +409,7 @@
         <span style="font-family:Cairo;font-weight:800;font-size:14px;color:#0e9e90;">تعرّف على المختص</span>
         <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:20px;">
           <div style="flex:0 0 320px;max-width:320px;border-radius:24px;overflow:hidden;background:#dfeaf6;box-shadow:0 24px 50px -20px rgba(12,35,64,.4);aspect-ratio:3/4;">
-            <img src="{{ drImg }}" alt="الدكتور أرون ساروهـا — أفضل جراح مخ وأعصاب وعمود فقري في الهند" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+            <img src="{{ drImg }}" alt="الدكتور أرون ساروهـا — أفضل جراح مخ وأعصاب وعمود فقري في الهند" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
           </div>
           <div style="flex:1;min-width:300px;">
             <h2 style="font-family:Cairo;font-weight:900;font-size:clamp(26px,3.2vw,40px);color:#0c2340;line-height:1.2;margin:0;">الدكتور أرون ساروهـا <span style="color:#1466b8;">من أفضل جراحي المخ والأعصاب</span> في الهند</h2>

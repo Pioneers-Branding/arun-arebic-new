@@ -169,16 +169,16 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-bottom:40px;">
         <!-- preview of 4 images -->
         <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-            <img src="uploads/PHOTO-2026-09-14-10-26-99.jpg" alt="صورة طبية" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            <img src="uploads/PHOTO-2026-09-14-10-26-99.jpg" alt="صورة طبية" style="width:100%;height:100%;object-fit:cover;object-position:center;" loading="lazy">
         </a>
         <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-            <img src="uploads/PHOTO-2026-09-14-10-26-102.jpg" alt="الرعاية الطبية" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            <img src="uploads/PHOTO-2026-09-14-10-26-102.jpg" alt="الرعاية الطبية" style="width:100%;height:100%;object-fit:cover;object-position:center;" loading="lazy">
         </a>
         <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-            <img src="uploads/PHOTO-2026-09-14-10-26-107.jpg" alt="غرفة العمليات" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            <img src="uploads/PHOTO-2026-09-14-10-26-107.jpg" alt="غرفة العمليات" style="width:100%;height:100%;object-fit:cover;object-position:center;" loading="lazy">
         </a>
         <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-            <img src="uploads/PHOTO-2026-09-14-10-26-87.jpg" alt="التكريمات والجوائز" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+            <img src="uploads/PHOTO-2026-09-14-10-26-87.jpg" alt="التكريمات والجوائز" style="width:100%;height:100%;object-fit:cover;object-position:center;" loading="lazy">
         </a>
       </div>
       
