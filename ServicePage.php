@@ -393,18 +393,11 @@
         <h2 style="font-family:Cairo;font-weight:900;font-size:clamp(24px,3vw,34px);color:#0c2340;margin:10px 0 32px;">لمحات من مسيرتنا الطبية</h2>
         
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-bottom:40px;">
+          <sc-for list="{{ trustGals }}" as="g" hint-placeholder-count="4">
           <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-              <img src="uploads/PHOTO-2026-09-14-10-26-99.jpg" alt="صورة طبية" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+              <img src="{{ g }}" alt="صورة طبية" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
           </a>
-          <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-              <img src="uploads/PHOTO-2026-09-14-10-26-102.jpg" alt="الرعاية الطبية" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-          </a>
-          <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-              <img src="uploads/PHOTO-2026-09-14-10-26-107.jpg" alt="غرفة العمليات" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-          </a>
-          <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
-              <img src="uploads/PHOTO-2026-09-14-10-26-87.jpg" alt="التكريمات والجوائز" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
-          </a>
+          </sc-for>
         </div>
         <a href="gallery.php" style="display:inline-block;padding:12px 28px;border:2px solid #1466b8;color:#1466b8;border-radius:10px;font-family:Cairo;font-weight:700;font-size:16px;transition:all 0.2s;" style-hover="background:#1466b8;color:#fff;">عرض معرض الصور الكامل</a>
       </div>
@@ -416,7 +409,7 @@
         <span style="font-family:Cairo;font-weight:800;font-size:14px;color:#0e9e90;">تعرّف على المختص</span>
         <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;margin-top:20px;">
           <div style="flex:0 0 320px;max-width:320px;border-radius:24px;overflow:hidden;background:#dfeaf6;box-shadow:0 24px 50px -20px rgba(12,35,64,.4);aspect-ratio:3/4;">
-            <img src="uploads/PHOTO-2026-09-14-10-26-99.jpg" alt="الدكتور أرون ساروهـا — أفضل جراح مخ وأعصاب وعمود فقري في الهند" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+            <img src="{{ drImg }}" alt="الدكتور أرون ساروهـا — أفضل جراح مخ وأعصاب وعمود فقري في الهند" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
           </div>
           <div style="flex:1;min-width:300px;">
             <h2 style="font-family:Cairo;font-weight:900;font-size:clamp(26px,3.2vw,40px);color:#0c2340;line-height:1.2;margin:0;">الدكتور أرون ساروهـا <span style="color:#1466b8;">من أفضل جراحي المخ والأعصاب</span> في الهند</h2>
@@ -789,6 +782,25 @@ class Component extends DCLogic {
       heroIconRef: (el) => { if (el && svc) { const h = this._icon(cat); if (el.__ic !== h) { el.innerHTML = h; el.__ic = h; } } },
       symptomsA: (() => { const s = svc ? (svc.symptoms || []) : []; return s.slice(0, Math.ceil(s.length / 2)); })(),
       symptomsB: (() => { const s = svc ? (svc.symptoms || []) : []; return s.slice(Math.ceil(s.length / 2)); })(),
+      drImg: (() => {
+        let h = 0, s = svc ? svc.slug : 'default';
+        for (let i=0; i<s.length; i++) h = s.charCodeAt(i) + ((h<<5)-h);
+        h = Math.abs(h);
+        const pool = ['uploads/PHOTO-2026-09-14-10-26-99.jpg','uploads/PHOTO-2026-09-14-10-26-102.jpg','uploads/PHOTO-2026-09-14-10-26-107.jpg','uploads/PHOTO-2026-09-14-10-26-87.jpg','uploads/PHOTO-2026-09-14-10-26-72.jpg','uploads/PHOTO-2026-09-14-10-26-83.jpg','uploads/PHOTO-2026-09-14-10-26-100.jpg'];
+        return pool[h % pool.length];
+      })(),
+      trustGals: (() => {
+        let h = 0, s = svc ? svc.slug : 'default';
+        for (let i=0; i<s.length; i++) h = s.charCodeAt(i) + ((h<<5)-h);
+        h = Math.abs(h);
+        const pool = ['uploads/PHOTO-2026-09-14-10-26-98.jpg','uploads/PHOTO-2026-09-14-10-26-104.jpg','uploads/PHOTO-2026-09-14-10-26-112.jpg','uploads/PHOTO-2026-09-14-10-26-71.jpg','uploads/PHOTO-2026-09-14-10-26-84.jpg','uploads/PHOTO-2026-09-14-10-26-92.jpg','uploads/PHOTO-2026-09-14-10-26-110.jpg','uploads/PHOTO-2026-09-14-10-26-57.jpg','uploads/PHOTO-2026-09-14-10-26-66.jpg','uploads/PHOTO-2026-09-14-10-26-97.jpg','uploads/PHOTO-2026-09-14-10-26-101.jpg'];
+        return [
+          pool[h % pool.length],
+          pool[(h+1) % pool.length],
+          pool[(h+2) % pool.length],
+          pool[(h+3) % pool.length]
+        ];
+      })(),
       hasSymptoms: !!(svc && svc.symptoms && svc.symptoms.length),
       when: svc ? svc.when : '',
       procedureP: svc ? (svc.procedureP || (svc.procedure ? [svc.procedure] : [])) : [],
