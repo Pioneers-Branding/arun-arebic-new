@@ -160,6 +160,31 @@
       </div>
     </div>
   </section>
+  <!-- EEAT GALLERY PREVIEW -->
+  <section style="padding:72px 24px 20px;background:#f4f8fd;">
+    <div style="max-width:1240px;margin:0 auto;text-align:center;">
+      <span style="font-family:Cairo;font-weight:800;font-size:14px;color:#0e9e90;">الثقة والخبرة</span>
+      <h2 style="font-family:Cairo;font-weight:900;font-size:clamp(24px,3vw,34px);color:#0c2340;margin:10px 0 32px;">لمحات من مسيرتنا الطبية</h2>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-bottom:40px;">
+        <!-- preview of 4 images -->
+        <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
+            <img src="uploads/PHOTO-2026-09-14-10-26-99.jpg" alt="صورة طبية" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </a>
+        <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
+            <img src="uploads/PHOTO-2026-09-14-10-26-102.jpg" alt="الرعاية الطبية" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </a>
+        <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
+            <img src="uploads/PHOTO-2026-09-14-10-26-107.jpg" alt="غرفة العمليات" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </a>
+        <a href="gallery.php" style="display:block;aspect-ratio:4/3;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.1);transition:transform 0.3s;" style-hover="transform:translateY(-5px);">
+            <img src="uploads/PHOTO-2026-09-14-10-26-87.jpg" alt="التكريمات والجوائز" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+        </a>
+      </div>
+      
+      <a href="gallery.php" style="display:inline-block;padding:12px 28px;border:2px solid #1466b8;color:#1466b8;border-radius:10px;font-family:Cairo;font-weight:700;font-size:16px;transition:all 0.2s;" style-hover="background:#1466b8;color:#fff;">عرض معرض الصور الكامل</a>
+    </div>
+  </section>
 
   <!-- CTA -->
   <section style="padding:80px 24px;background:linear-gradient(135deg,#0e3a66,#0c2340);color:#fff;text-align:center;">
@@ -232,6 +257,7 @@ class Component extends DCLogic {
   nav = [
     { label: 'عن الدكتور', href: 'index.php#about' },
     { label: 'الخدمات', href: 'services.php' },
+    { label: 'معرض الصور', href: 'gallery.php' },
     { label: 'العلاجات والعمليات', href: 'services.php' },
     { label: 'المرضى الدوليون', href: 'index.php#international' },
     { label: 'المقالات الطبية', href: 'index.php#blog' },

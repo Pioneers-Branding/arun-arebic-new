@@ -617,6 +617,7 @@ class Component extends DCLogic {
   nav = [
     { label: 'عن الدكتور', href: 'index.php#about' },
     { label: 'الخدمات', href: 'services.php' },
+    { label: 'معرض الصور', href: 'gallery.php' },
     { label: 'العلاجات والعمليات', href: 'services.php' },
     { label: 'المرضى الدوليون', href: 'index.php#international' },
     { label: 'المقالات الطبية', href: 'index.php#blog' },
