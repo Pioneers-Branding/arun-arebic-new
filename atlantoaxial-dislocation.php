@@ -10,8 +10,8 @@
 <helmet>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>علاج خلع المفصل الفهقي المحوري | الدكتور أرون ساروهـا — جراحة العمود الفقري</title>
-<meta name="description" content="تشخيص وعلاج عدم استقرار وخلع المفصل بين الفقرتين العنقيتين الأولى والثانية لحماية الحبل الشوكي.">
+<title>علاج خلع وتثبيت المفصل الفهقي المحوري في الهند | د. أرون ساروهـا</title>
+<meta name="description" content="جراحة دقيقة لعلاج خلع المفصل الفهقي المحوري وتثبيت أعلى فقرات الرقبة في الهند مع الدكتور أرون ساروهـا لحماية الحبل الشوكي بمستشفى ماكس.">
 <link rel="canonical" href="https://drarunsaroha.example/atlantoaxial-dislocation">
 </helmet>
 <dc-import name="ServicePage" slug="atlantoaxial-dislocation" hint-size="100%,100%"></dc-import>

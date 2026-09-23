@@ -10,8 +10,8 @@
 <helmet>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>علاج ومعالجة السكتة الدماغية | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
-<meta name="description" content="تقييم وعلاج السكتة الدماغية والحالات الوعائية الدماغية والوقاية من المضاعفات واستعادة الوظائف.">
+<title>علاج وإدارة السكتة الدماغية في الهند | د. أرون ساروهـا</title>
+<meta name="description" content="علاج وتأهيل السكتات والجلطات الدماغية والنزيف الدماغي في الهند بمستشفى ماكس مع الدكتور أرون ساروهـا. أحدث البروتوكولات الطبية للمرضى الدوليين.">
 <link rel="canonical" href="https://drarunsaroha.example/stroke-management">
 </helmet>
 <dc-import name="ServicePage" slug="stroke-management" hint-size="100%,100%"></dc-import>

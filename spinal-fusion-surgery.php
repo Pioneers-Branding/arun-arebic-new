@@ -10,8 +10,8 @@
 <helmet>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>جراحة دمج وتثبيت الفقرات | الدكتور أرون ساروهـا — جراحة العمود الفقري</title>
-<meta name="description" content="تثبيت فقرتين أو أكثر لاستعادة الاستقرار وتخفيف الألم الناتج عن عدم الاستقرار أو التشوّه.">
+<title>جراحة دمج وتثبيت فقرات العمود الفقري في الهند | د. أرون ساروهـا</title>
+<meta name="description" content="تثبيت فقرات الظهر والرقبة بالشرائح والمسامير الحديثة في الهند لعلاج عدم استقرار العمود الفقري مع استشاري الجراحة د. أرون ساروهـا. رعاية شاملة للمرضى العرب.">
 <link rel="canonical" href="https://drarunsaroha.example/spinal-fusion-surgery">
 </helmet>
 <dc-import name="ServicePage" slug="spinal-fusion-surgery" hint-size="100%,100%"></dc-import>

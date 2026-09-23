@@ -10,8 +10,8 @@
 <helmet>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>جراحة أورام الدماغ | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
-<meta name="description" content="استئصال أورام الدماغ الحميدة والخبيثة بتقنيات دقيقة تحافظ على الأنسجة السليمة.">
+<title>جراحة واستئصال أورام الدماغ في الهند | د. أرون ساروهـا</title>
+<meta name="description" content="استئصال أورام المخ الحميدة والخبيثة في الهند بأحدث أجهزة الملاحة الجراحية ثلاثية الأبعاد مع الدكتور أرون ساروهـا بمستشفى ماكس. رعاية متكاملة للمرضى العرب.">
 <link rel="canonical" href="https://drarunsaroha.example/brain-tumor-surgery">
 </helmet>
 <dc-import name="ServicePage" slug="brain-tumor-surgery" hint-size="100%,100%"></dc-import>

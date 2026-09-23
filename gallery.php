@@ -43,8 +43,9 @@
 <helmet>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>معرض الصور | الدكتور أرون ساروهـا</title>
-<meta name="description" content="خدمات وعلاجات الدكتور أرون ساروهـا في جراحة المخ والأعصاب والعمود الفقري: أورام الدماغ، الانزلاق الغضروفي، تضيّق القناة الشوكية، الجراحة طفيفة التوغل والمزيد.">
+<title>معرض العمليات وقصص النجاح في الهند | د. أرون ساروهـا — جراحة المخ والأعصاب</title>
+<meta name="description" content="شاهد صور المركز الطبي المتطور وتجارب وقصص نجاح المرضى العرب والدوليين الذين تلقوا جراحات المخ والعمود الفقري في الهند مع الدكتور أرون ساروهـا بمستشفى ماكس.">
+<meta name="keywords" content="علاج المرضى العرب في الهند, عمليات المخ والأعصاب في الهند, قصص نجاح جراحة العمود الفقري في الهند, الدكتور أرون ساروهـا, مستشفى ماكس الهند">
 <link rel="canonical" href="https://drarunsaroha.example/services">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,6 +59,53 @@
   .dr-scroll::-webkit-scrollbar{height:0}
   @media(min-width:960px){.dr-mobilebar{display:none !important}}
   @media(max-width:1024px){.dr-navlinks{display:none !important}.dr-hamburger{display:flex !important}}
+
+  /* Dropdown Styles */
+  .dr-dropdown { position: relative; display: inline-flex; align-items: center; }
+  .dr-dropdown-btn {
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    padding: 8px 12px; border-radius: 8px; font-family: Cairo; font-weight: 700;
+    font-size: 14.5px; color: #dce8f6; background: transparent; border: none;
+    cursor: pointer; transition: background .18s, color .18s;
+  }
+  .dr-dropdown-btn:hover, .dr-dropdown:hover .dr-dropdown-btn, .dr-dropdown:focus-within .dr-dropdown-btn {
+    background: rgba(255,255,255,.14); color: #fff;
+  }
+  .dr-chevron { transition: transform .2s ease; }
+  .dr-dropdown:hover .dr-chevron, .dr-dropdown:focus-within .dr-chevron { transform: rotate(180deg); }
+  .dr-dropdown::after { content: ''; position: absolute; top: 100%; right: 0; left: 0; height: 14px; display: block; }
+  .dr-dropdown-menu {
+    position: absolute; top: calc(100% + 10px); right: -60px; background: #ffffff;
+    border: 1px solid #e3ecf5; border-radius: 18px;
+    box-shadow: 0 20px 48px -10px rgba(12,35,64,.3), 0 0 0 1px rgba(20,102,184,.08);
+    padding: 22px 22px 0; width: 560px; z-index: 120; opacity: 0; visibility: hidden;
+    transform: translateY(10px); transition: opacity .2s ease, transform .2s ease, visibility .2s;
+    pointer-events: none; text-align: right;
+  }
+  .dr-dropdown:hover .dr-dropdown-menu, .dr-dropdown:focus-within .dr-dropdown-menu {
+    opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
+  }
+  .dr-dropdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .dr-col-header { display: flex; align-items: center; gap: 8px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1.5px solid #edf3f9; }
+  .dr-col-header span { font-family: Cairo; font-weight: 800; font-size: 14.5px; color: #0c2340; }
+  .dr-col-links { display: flex; flex-direction: column; gap: 2px; }
+  .dr-col-links a {
+    display: block; padding: 6px 10px; border-radius: 8px; font-family: Tajawal;
+    font-size: 13.5px; font-weight: 500; color: #33475b; text-decoration: none;
+    transition: background .15s, color .15s, transform .15s; line-height: 1.4;
+  }
+  .dr-col-links a:hover { background: #f0f6fc; color: #1466b8; transform: translateX(-3px); }
+  .dr-dropdown-footer {
+    margin: 14px -22px 0; padding: 12px 22px; background: #f8fafc; border-top: 1px solid #edf3f9;
+    border-bottom-left-radius: 18px; border-bottom-right-radius: 18px; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  .dr-dropdown-footer a { font-family: Cairo; font-weight: 800; font-size: 13px; color: #1466b8; text-decoration: none; }
+  .dr-dropdown-footer a:hover { color: #0e4d8c; text-decoration: underline; }
+  .dr-dropdown-footer span { font-size: 12px; color: #7b8eab; }
+  details.dr-mobile-details summary::-webkit-details-marker { display: none; }
+  details.dr-mobile-details summary { list-style: none; }
+  details.dr-mobile-details[open] .dr-mob-chevron { transform: rotate(180deg); }
 </style>
 </helmet>
 <div dir="rtl" lang="ar" style="font-family:Tajawal,system-ui,sans-serif;color:#22303f;background:#f4f8fd;overflow-x:clip;line-height:1.7;">
@@ -73,11 +121,59 @@
           <span style="font-size:12px;color:#a9c3e0;font-weight:500;">جراحة المخ والأعصاب والعمود الفقري</span>
         </span>
       </a>
-      <nav class="dr-navlinks dr-scroll" style="flex:1;display:flex;align-items:center;gap:4px;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;">
-        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
-          <a href="{{ item.href }}" style="white-space:nowrap;padding:8px 12px;border-radius:8px;font-family:Cairo;font-weight:700;font-size:14.5px;color:#dce8f6;" style-hover="background:rgba(255,255,255,.14);color:#fff;">{{ item.label }}</a>
-        </sc-for>
+
+      <nav class="dr-navlinks" style="flex:1;display:flex;align-items:center;gap:4px;justify-content:flex-start;overflow:visible;">
+        <a href="index.php" style="white-space:nowrap;padding:8px 12px;border-radius:8px;font-family:Cairo;font-weight:700;font-size:14.5px;color:#dce8f6;" style-hover="background:rgba(255,255,255,.14);color:#fff;">الرئيسية</a>
+
+        <div class="dr-dropdown">
+          <button type="button" class="dr-dropdown-btn">
+            <span>العلاجات والعمليات</span>
+            <svg class="dr-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dr-dropdown-menu">
+            <div class="dr-dropdown-grid">
+              <div class="dr-dropdown-col">
+                <div class="dr-col-header">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M9 6h6M8.5 9.5h7M8 12h8M8.5 15.5h7M9 19h6" stroke="#1466b8" stroke-width="1.8" stroke-linecap="round"/></svg>
+                  <span>جراحة العمود الفقري</span>
+                </div>
+                <div class="dr-col-links">
+                  <a href="back-pain-treatment.php">علاج آلام الظهر</a>
+                  <a href="minimally-invasive-spine-surgery.php">جراحة العمود الفقري طفيفة التوغل</a>
+                  <a href="spinal-stenosis-surgery.php">جراحة تضيّق القناة الشوكية</a>
+                  <a href="disc-replacement-surgery.php">جراحة استبدال الغضروف</a>
+                  <a href="endoscopic-spine-surgery.php">جراحة العمود الفقري بالمنظار</a>
+                  <a href="cervical-spine-surgery.php">جراحة العمود الفقري العنقي</a>
+                  <a href="scoliosis-treatment.php">علاج الجنف والتشوهات</a>
+                  <a href="degenerative-disc-disease.php">علاج تنكّس الغضاريف</a>
+                </div>
+              </div>
+              <div class="dr-dropdown-col">
+                <div class="dr-col-header">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 4a4 4 0 0 0-4 4c-1.5.5-2 2-1.3 3.3C6 12.5 6 14 7 15c0 1.5 1.3 2.5 2.7 2.5M12 4a4 4 0 0 1 4 4c1.5.5 2 2 1.3 3.3.7 1.2.7 2.7-.3 3.7 0 1.5-1.3 2.5-2.7 2.5M12 4v14" stroke="#1466b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>جراحة المخ والأعصاب</span>
+                </div>
+                <div class="dr-col-links">
+                  <a href="brain-tumor-surgery.php">جراحة أورام الدماغ</a>
+                  <a href="skull-base-surgery.php">جراحة قاعدة الجمجمة</a>
+                  <a href="complex-nerve-surgery.php">جراحة الأعصاب المعقدة</a>
+                  <a href="brain-aneurysm-treatment.php">علاج تمدد الأوعية الدموية</a>
+                  <a href="hydrocephalus-treatment.php">علاج استسقاء الدماغ</a>
+                  <a href="head-injury.php">علاج إصابات الرأس</a>
+                  <a href="headache-treatment.php">علاج الصداع</a>
+                </div>
+              </div>
+            </div>
+            <div class="dr-dropdown-footer">
+              <a href="services.php">عرض كافة الخدمات والعلاجات (15+ علاج) ←</a>
+              <span>رعاية جراحية متخصصة ومتقدمة</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="gallery.php" style="white-space:nowrap;padding:8px 12px;border-radius:8px;font-family:Cairo;font-weight:700;font-size:14.5px;color:#dce8f6;" style-hover="background:rgba(255,255,255,.14);color:#fff;">معرض الصور</a>
       </nav>
+
       <div style="display:flex;align-items:center;gap:14px;flex-shrink:0;">
         <a href="index.php#appointment" style="background:linear-gradient(180deg,#1466b8,#0e4d8c);color:#fff;padding:11px 22px;border-radius:10px;font-family:Cairo;font-weight:800;font-size:14.5px;white-space:nowrap;box-shadow:0 10px 22px -10px rgba(20,102,184,.65);" style-hover="filter:brightness(1.08);transform:translateY(-1px);">احجز موعدك</a>
         <button class="dr-hamburger" onClick="{{ toggleMenu }}" aria-label="القائمة" style="display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:rgba(255,255,255,.1);align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
@@ -86,10 +182,41 @@
       </div>
     </div>
     <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-      <nav style="border-top:1px solid rgba(255,255,255,.12);padding:10px 24px 16px;display:flex;flex-direction:column;gap:2px;">
-        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
-          <a href="{{ item.href }}" onClick="{{ closeMenu }}" style="padding:12px 12px;border-radius:9px;font-family:Cairo;font-weight:700;font-size:15.5px;color:#dce8f6;" style-hover="background:rgba(255,255,255,.14);color:#fff;">{{ item.label }}</a>
-        </sc-for>
+      <nav style="border-top:1px solid #e3ecf5;background:#fff;padding:12px 20px 20px;display:flex;flex-direction:column;gap:4px;max-height:80vh;overflow-y:auto;">
+        <a href="index.php" onClick="{{ closeMenu }}" style="padding:10px 14px;border-radius:10px;font-family:Cairo;font-weight:700;font-size:15px;color:#31435a;text-decoration:none;" style-hover="background:#eaf2fb;color:#0e4d8c;">الرئيسية</a>
+
+        <details class="dr-mobile-details" style="border:1px solid #edf3f9;border-radius:12px;overflow:hidden;background:#f9fbfe;margin:2px 0;">
+          <summary style="padding:11px 14px;font-family:Cairo;font-weight:700;font-size:15px;color:#0c2340;cursor:pointer;display:flex;align-items:center;justify-content:space-between;list-style:none;">
+            <span>العلاجات والعمليات</span>
+            <svg class="dr-mob-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" style="transition:transform .2s;"><path d="M6 9l6 6 6-6" stroke="#1466b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div style="padding:4px 14px 14px;border-top:1px solid #edf3f9;background:#fff;">
+            <div style="font-family:Cairo;font-weight:800;font-size:13px;color:#1466b8;margin:10px 0 6px;">جراحة العمود الفقري:</div>
+            <div style="display:flex;flex-direction:column;gap:2px;padding-right:8px;">
+              <a href="back-pain-treatment.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">علاج آلام الظهر</a>
+              <a href="minimally-invasive-spine-surgery.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">جراحة العمود الفقري طفيفة التوغل</a>
+              <a href="spinal-stenosis-surgery.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">جراحة تضيّق القناة الشوكية</a>
+              <a href="disc-replacement-surgery.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">جراحة استبدال الغضروف</a>
+              <a href="endoscopic-spine-surgery.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">جراحة العمود الفقري بالمنظار</a>
+              <a href="cervical-spine-surgery.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">جراحة العمود الفقري العنقي</a>
+              <a href="scoliosis-treatment.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">علاج الجنف والتشوهات</a>
+              <a href="degenerative-disc-disease.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">علاج تنكّس الغضاريف</a>
+            </div>
+            <div style="font-family:Cairo;font-weight:800;font-size:13px;color:#1466b8;margin:14px 0 6px;">جراحة المخ والأعصاب:</div>
+            <div style="display:flex;flex-direction:column;gap:2px;padding-right:8px;">
+              <a href="brain-tumor-surgery.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">جراحة أورام الدماغ</a>
+              <a href="skull-base-surgery.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">جراحة قاعدة الجمجمة</a>
+              <a href="complex-nerve-surgery.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">جراحة الأعصاب المعقدة</a>
+              <a href="brain-aneurysm-treatment.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">علاج تمدد الأوعية الدموية</a>
+              <a href="hydrocephalus-treatment.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">علاج استسقاء الدماغ</a>
+              <a href="head-injury.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">علاج إصابات الرأس</a>
+              <a href="headache-treatment.php" onClick="{{ closeMenu }}" style="font-size:13.5px;color:#4a5a6d;padding:5px 0;text-decoration:none;">علاج الصداع</a>
+            </div>
+            <a href="services.php" onClick="{{ closeMenu }}" style="display:block;margin-top:12px;padding-top:10px;border-top:1px solid #edf3f9;font-family:Cairo;font-weight:800;font-size:13.5px;color:#1466b8;text-decoration:none;">عرض كافة الخدمات والعلاجات ←</a>
+          </div>
+        </details>
+
+        <a href="gallery.php" onClick="{{ closeMenu }}" style="padding:10px 14px;border-radius:10px;font-family:Cairo;font-weight:700;font-size:15px;color:#31435a;text-decoration:none;" style-hover="background:#eaf2fb;color:#0e4d8c;">معرض الصور</a>
       </nav>
     </sc-if>
   </header>
@@ -164,12 +291,6 @@
         </div>
         <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-108.jpg')">
             <img src="uploads\PHOTO-2026-09-14-10-26-108.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-109.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-109.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
@@ -290,30 +411,6 @@
         </div>
         <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-71.jpg')">
             <img src="uploads\PHOTO-2026-09-14-10-26-71.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-72.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-72.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-73.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-73.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-74.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-74.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-75.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-75.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
@@ -446,18 +543,6 @@
         </div>
         <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-97.jpg')">
             <img src="uploads\PHOTO-2026-09-14-10-26-97.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-98.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-98.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-99.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-99.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>

@@ -10,8 +10,8 @@
 <helmet>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>علاج آلام الظهر | الدكتور أرون ساروهـا — جراحة العمود الفقري</title>
-<meta name="description" content="تشخيص وعلاج آلام الظهر المزمنة والحادة مع الدكتور أرون ساروهـا بأحدث الأساليب التحفظية والجراحية طفيفة التوغل.">
+<title>علاج آلام الظهر والعمود الفقري في الهند | د. أرون ساروهـا</title>
+<meta name="description" content="تشخيص وعلاج آلام الظهر الحادة والمزمنة في الهند بأحدث الأساليب التحفظية والجراحية طفيفة التوغل مع الدكتور أرون ساروهـا. استشارات للمرضى من كافة الدول العربية.">
 <link rel="canonical" href="https://drarunsaroha.example/back-pain-treatment">
 </helmet>
 <dc-import name="ServicePage" slug="back-pain-treatment" hint-size="100%,100%"></dc-import>

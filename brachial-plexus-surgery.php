@@ -10,8 +10,8 @@
 <helmet>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>جراحة الضفيرة العضدية | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
-<meta name="description" content="إصلاح إصابات شبكة الأعصاب المغذّية للذراع لاستعادة الحركة والإحساس قدر الإمكان.">
+<title>جراحة وترميم الضفيرة العضدية في الهند | د. أرون ساروهـا</title>
+<meta name="description" content="إصلاح ونقل أعصاب الضفيرة العضدية في الهند لاستعادة حركة الذراع والكتف بأحدث تقنيات الجراحة المجهرية مع الدكتور أرون ساروهـا للمرضى الدوليين والعرب.">
 <link rel="canonical" href="https://drarunsaroha.example/brachial-plexus-surgery">
 </helmet>
 <dc-import name="ServicePage" slug="brachial-plexus-surgery" hint-size="100%,100%"></dc-import>

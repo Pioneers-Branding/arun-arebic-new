@@ -10,8 +10,8 @@
 <helmet>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>جراحة ترقيع الأعصاب | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
-<meta name="description" content="سدّ الفجوات في الأعصاب المقطوعة باستخدام طعم عصبي لإعادة توصيل الألياف واستعادة الوظيفة.">
+<title>جراحة ترقيع وزراعة الأعصاب في الهند | د. أرون ساروهـا</title>
+<meta name="description" content="ترقيع وتوصيل الأعصاب المقطوعة والتالفة في الهند بتقنيات الجراحة المجهرية لاستعادة الحركة والإحساس مع خبير جراحة الأعصاب د. أرون ساروهـا.">
 <link rel="canonical" href="https://drarunsaroha.example/nerve-grafting-surgery">
 </helmet>
 <dc-import name="ServicePage" slug="nerve-grafting-surgery" hint-size="100%,100%"></dc-import>

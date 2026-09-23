@@ -12,9 +12,8 @@
         <helmet>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>جراحة العمود الفقري بالمنظار | الدكتور أرون ساروهـا — جراحة المخ والأعصاب</title>
-            <meta name="description"
-                content="جراحة فائقة الدقة بالمنظار للأقراص المنفتقة وأورام العمود الفقري عبر شقوق صغيرة جداً.">
+            <title>جراحة العمود الفقري بالمنظار في الهند | د. أرون ساروهـا</title>
+            <meta name="description" content="استئصال الانزلاق الغضروفي بالمنظار الدقيق في الهند عبر شقوق جراحية متناهية الصغر مع الدكتور أرون ساروهـا. تعافٍ سريع وإقامة قصيرة للمرضى من العالم العربي.">
             <link rel="canonical" href="https://drarunsaroha.example/endoscopic-spine-surgery">
         </helmet>
         <dc-import name="ServicePage" slug="endoscopic-spine-surgery" hint-size="100%,100%"></dc-import>
