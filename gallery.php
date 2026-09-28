@@ -247,12 +247,6 @@
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-101.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-101.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
         <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-102.jpg')">
             <img src="uploads\PHOTO-2026-09-14-10-26-102.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
@@ -295,12 +289,6 @@
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-110.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-110.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
         <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-111.jpg')">
             <img src="uploads\PHOTO-2026-09-14-10-26-111.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
@@ -339,12 +327,6 @@
         </div>
         <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-59.jpg')">
             <img src="uploads\PHOTO-2026-09-14-10-26-59.jpg" alt="معرض الصور" loading="lazy">
-            <div class="gal-overlay">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-        </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-60.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-60.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
