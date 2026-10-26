@@ -221,310 +221,503 @@
     </sc-if>
   </header>
   <style>
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; padding: 40px 24px; max-width: 1240px; margin: 0 auto; }
-    .gal-item { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 1; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s; }
-    .gal-item:hover { transform: translateY(-4px); }
-    .gal-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gal-overlay { position: absolute; inset: 0; background: rgba(12,35,64,0.6); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; padding: 24px 24px 60px; max-width: 1240px; margin: 0 auto; }
+    .gal-item { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(12,35,64,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #e2ecf7; background: #fff; }
+    .gal-item:hover { transform: translateY(-5px); box-shadow: 0 14px 28px -6px rgba(12,35,64,0.18); }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .gal-item:hover img { transform: scale(1.05); }
+    .gal-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,35,64,0.2) 0%, rgba(12,35,64,0.75) 100%); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
     .gal-item:hover .gal-overlay { opacity: 1; }
-    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; display: none; align-items: center; justify-content: center; flex-direction: column; }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-    .lightbox-close { position: absolute; top: 20px; right: 20px; color: #fff; cursor: pointer; background: rgba(255,255,255,0.2); padding: 12px; border-radius: 50%; }
+    
+    /* Tabs */
+    .gal-tabs-wrap { max-width: 1240px; margin: -28px auto 0; padding: 0 24px; position: relative; z-index: 20; display: flex; justify-content: center; }
+    .gal-tabs { display: inline-flex; background: #ffffff; padding: 6px; border-radius: 16px; box-shadow: 0 12px 30px -8px rgba(12,35,64,0.18); border: 1px solid #dce7f3; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .gal-tab-btn { border: none; background: transparent; padding: 10px 20px; border-radius: 12px; font-family: Cairo; font-weight: 700; font-size: 14.5px; color: #475a70; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 8px; }
+    .gal-tab-btn:hover { color: #1466b8; background: #f0f6fd; }
+    .gal-tab-btn.active { background: linear-gradient(135deg, #1466b8, #0c2340); color: #fff; box-shadow: 0 6px 18px -4px rgba(20,102,184,0.5); }
+    .gal-tab-badge { font-size: 11px; padding: 2px 7px; border-radius: 20px; background: rgba(255,255,255,0.22); color: inherit; font-weight: 800; }
+    .gal-tab-btn:not(.active) .gal-tab-badge { background: #e7eff8; color: #1466b8; }
+
+    /* Videos Section */
+    .video-section { max-width: 1240px; margin: 40px auto 0; padding: 0 24px; }
+    .section-header-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 30px; background: #eaf2fb; color: #1466b8; font-family: Cairo; font-weight: 800; font-size: 13px; margin-bottom: 12px; }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin-top: 28px; }
+    .video-card { background: #ffffff; border-radius: 22px; border: 1px solid #dbe7f4; overflow: hidden; box-shadow: 0 10px 30px -8px rgba(12,35,64,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+    .video-card:hover { transform: translateY(-6px); box-shadow: 0 20px 42px -10px rgba(20,102,184,0.18); border-color: #bad3ed; }
+    .video-media-wrap { position: relative; background: #0c2340; aspect-ratio: 16/10; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .video-media-wrap video { width: 100%; height: 100%; object-fit: contain; background: #061325; display: block; }
+    .video-badge { position: absolute; top: 14px; right: 14px; z-index: 5; background: rgba(12,35,64,0.85); backdrop-filter: blur(8px); color: #fff; padding: 5px 12px; border-radius: 20px; font-family: Cairo; font-weight: 700; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,0.15); }
+    .video-duration { position: absolute; bottom: 14px; left: 14px; z-index: 5; background: rgba(0,0,0,0.75); color: #fff; padding: 3px 8px; border-radius: 6px; font-size: 11.5px; font-family: system-ui; direction: ltr; }
+    .video-card-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .video-card-title { font-family: Cairo; font-weight: 800; font-size: 18px; color: #0c2340; margin: 0 0 10px; line-height: 1.4; }
+    .video-card-desc { font-size: 14px; color: #52657a; line-height: 1.65; margin: 0 0 16px; flex: 1; }
+    .video-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .video-tag { background: #f0f5fb; color: #1e5a96; font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 6px; }
+    .video-card-actions { display: flex; gap: 10px; margin-top: auto; }
+    .btn-theater { flex: 1; background: #f0f6fc; color: #1466b8; border: 1px solid #cde0f3; padding: 10px 14px; border-radius: 10px; font-family: Cairo; font-weight: 700; font-size: 13.5px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s; }
+    .btn-theater:hover { background: #1466b8; color: #fff; border-color: #1466b8; }
+
+    /* Lightbox Modal */
+    .lightbox { position: fixed; inset: 0; background: rgba(5,15,28,0.94); z-index: 99999; display: none; align-items: center; justify-content: center; flex-direction: column; padding: 20px; backdrop-filter: blur(8px); }
+    .lightbox.active { display: flex; animation: drFade .2s ease; }
+    .lightbox-content-box { position: relative; max-width: 900px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .lightbox img { max-width: 100%; max-height: 80vh; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); object-fit: contain; }
+    .lightbox video { max-width: 100%; max-height: 80vh; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.7); outline: none; background: #000; }
+    .lightbox-close { position: absolute; top: -52px; right: 0; color: #fff; cursor: pointer; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background .2s; }
+    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-caption { margin-top: 16px; color: #e2eeff; font-family: Cairo; font-weight: 700; font-size: 16px; text-align: center; max-width: 680px; line-height: 1.5; }
+    .lightbox-subcaption { font-size: 13px; color: #9bb7d4; font-family: Tajawal; margin-top: 4px; text-align: center; }
   </style>
 
-  <section style="background:linear-gradient(135deg,#0c2340,#0e3a66);color:#fff;padding:48px 24px 60px;">
-    <div style="max-width:1240px;margin:0 auto;text-align:center;">
-      <h1 style="font-family:Cairo;font-weight:900;font-size:clamp(30px,4.4vw,48px);color:#fff;margin:0;">معرض الصور</h1>
-      <p style="font-size:clamp(16px,1.6vw,19px);color:#cfe0f2;margin:16px auto 0;max-width:640px;text-wrap:pretty;">نظرة عن كثب على رحلتنا الطبية وتفانينا في رعاية المرضى وتوفير أفضل العلاجات الجراحية.</p>
+  <section style="background:linear-gradient(135deg,#0c2340 0%,#0e3a66 60%,#1466b8 100%);color:#fff;padding:56px 24px 72px;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;opacity:0.07;background-image:radial-gradient(#fff 1px, transparent 1px);background-size:24px 24px;"></div>
+    <div style="max-width:1240px;margin:0 auto;text-align:center;position:relative;z-index:2;">
+      <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:30px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#9fd2ff;font-family:Cairo;font-weight:700;font-size:13px;margin-bottom:14px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 10l5-3v10l-5-3v-4z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="6" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/></svg>
+        توثيق حقيقي من داخل المركز الطبي
+      </span>
+      <h1 style="font-family:Cairo;font-weight:900;font-size:clamp(32px,4.6vw,52px);color:#fff;margin:0;letter-spacing:-0.5px;">معرض الصور والفيديوهات الطبية</h1>
+      <p style="font-size:clamp(16px,1.6vw,19px);color:#d3e5f8;margin:18px auto 0;max-width:720px;text-wrap:pretty;line-height:1.75;">
+        شاهد بالفيديو والصور رحلة الرعاية الجراحية المتطورة مع الدكتور أرون ساروهـا، من جلسات الاستشارة الدقيقة إلى ابتسامات الرضا ومراحل المشي والتعافي التام لمرضانا.
+      </p>
     </div>
   </section>
 
-  <div class="gallery-grid">
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-100.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-100.jpg" alt="معرض الصور" loading="lazy">
+  <!-- Interactive Filter Tabs -->
+  <div class="gal-tabs-wrap">
+    <div class="gal-tabs">
+      <button type="button" class="gal-tab-btn active" onclick="filterGallery('all', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>جميع الوسائط</span>
+        <span class="gal-tab-badge">39</span>
+      </button>
+      <button type="button" class="gal-tab-btn" onclick="filterGallery('videos', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 10l5-3v10l-5-3v-4z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="6" width="13" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>فيديوهات المرضى والتعافي</span>
+        <span class="gal-tab-badge">3 فيديوهات</span>
+      </button>
+      <button type="button" class="gal-tab-btn" onclick="filterGallery('photos', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>صور العمليات والمركز</span>
+        <span class="gal-tab-badge">36</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Featured Videos Section -->
+  <section id="videos-section" class="video-section">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;border-bottom:2px solid #e5edf6;padding-bottom:18px;">
+      <div>
+        <span class="section-header-pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+          فيديوهات حصرية وموثقة
+        </span>
+        <h2 style="font-family:Cairo;font-weight:900;font-size:clamp(24px,3.2vw,32px);color:#0c2340;margin:4px 0 0;">
+          قصص التعافي واستشارات المرضى
+        </h2>
+        <p style="font-size:15px;color:#5a6e84;margin:6px 0 0;max-width:680px;">
+          توثيق مرئي يبرز اهتمام الدكتور أرون ساروهـا بأدق التفاصيل الطبية، وسعادة المرضى بعد نجاح الجراحة، ولحظات بدء المشي والتعافي.
+        </p>
+      </div>
+      <div style="font-size:13.5px;color:#7c91a8;font-weight:600;">
+        3 مقاطع فيديو سريرية
+      </div>
+    </div>
+
+    <div class="video-grid">
+      <!-- Video 1 -->
+      <article class="video-card">
+        <div class="video-media-wrap">
+          <span class="video-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            استشارة وتشخيص
+          </span>
+          <span class="video-duration">0:10</span>
+          <video id="vid-1" controls playsinline preload="metadata" poster="uploads/videos/thumb-1.jpg" src="uploads/videos/dr-saroha-consultation.mp4"></video>
+        </div>
+        <div class="video-card-body">
+          <h3 class="video-card-title">استشارة تفصيلية ومناقشة تقارير الحالة</h3>
+          <p class="video-card-desc">
+            الدكتور أرون ساروهـا يستعرض ملف المريض وصور الأشعة والرنين المغناطيسي مع المريض وأسرته بوضوح واهتمام بالغ، لشرح خطوات العملية وبث الطمأنينة.
+          </p>
+          <div class="video-tags">
+            <span class="video-tag">عيادة المخ والأعصاب</span>
+            <span class="video-tag">شرح الرنين المغناطيسي</span>
+            <span class="video-tag">د. أرون ساروهـا</span>
+          </div>
+          <div class="video-card-actions">
+            <button type="button" class="btn-theater" onclick="openLightbox('uploads/videos/dr-saroha-consultation.mp4', 'video', 'استشارة تفصيلية ومناقشة تقارير الحالة — د. أرون ساروهـا')">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>مشاهدة بحجم كامل</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Video 2 -->
+      <article class="video-card">
+        <div class="video-media-wrap">
+          <span class="video-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#f87171"/></svg>
+            قصة نجاح وامتنان
+          </span>
+          <span class="video-duration">0:10</span>
+          <video id="vid-2" controls playsinline preload="metadata" poster="uploads/videos/thumb-2.jpg" src="uploads/videos/patient-recovery-testimonial.mp4"></video>
+        </div>
+        <div class="video-card-body">
+          <h3 class="video-card-title">ابتسامة الأمل والارتياح بعد نجاح العملية</h3>
+          <p class="video-card-desc">
+            المريضة برفقة عائلتها في غرفة الإقامة بعد الجراحة، معبّرين عن سعادتهم البالغة بنجاح العملية وتلاشي الألم وعودة العافية، وسط رعاية طبية وتمريضية متكاملة.
+          </p>
+          <div class="video-tags">
+            <span class="video-tag">رضا المرضى العرب</span>
+            <span class="video-tag">ما بعد العملية</span>
+            <span class="video-tag">مستشفى ماكس</span>
+          </div>
+          <div class="video-card-actions">
+            <button type="button" class="btn-theater" onclick="openLightbox('uploads/videos/patient-recovery-testimonial.mp4', 'video', 'ابتسامة الأمل والارتياح بعد نجاح العملية')">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>مشاهدة بحجم كامل</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Video 3 -->
+      <article class="video-card">
+        <div class="video-media-wrap">
+          <span class="video-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 3l3 3-7 7-3-3 7-7z" stroke="#38bdf8" stroke-width="2"/><path d="M18 8l3 3" stroke="#38bdf8" stroke-width="2"/></svg>
+            مرحلة التعافي الحركي
+          </span>
+          <span class="video-duration">0:10</span>
+          <video id="vid-3" controls playsinline preload="metadata" poster="uploads/videos/thumb-3.jpg" src="uploads/videos/post-surgery-walking-recovery.mp4"></video>
+        </div>
+        <div class="video-card-body">
+          <h3 class="video-card-title">المريض يستعيد المشي بثبات بعد الجراحة</h3>
+          <p class="video-card-desc">
+            توثيق اللحظات الأولى لخروج المريض وسيره في ممر المستشفى بكل ثقة وتوازن مدعوماً بحزام الظهر وتحت إشراف الفريق الطبي، في خطوة هامة نحو التعافي الكامل.
+          </p>
+          <div class="video-tags">
+            <span class="video-tag">جراحة العمود الفقري</span>
+            <span class="video-tag">تعافي سريع</span>
+            <span class="video-tag">استعادة المشي</span>
+          </div>
+          <div class="video-card-actions">
+            <button type="button" class="btn-theater" onclick="openLightbox('uploads/videos/post-surgery-walking-recovery.mp4', 'video', 'المريض يستعيد المشي بثبات بعد جراحة العمود الفقري')">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>مشاهدة بحجم كامل</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Photos Header -->
+  <div id="photos-header" style="max-width:1240px;margin:56px auto 0;padding:0 24px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;border-bottom:2px solid #e5edf6;padding-bottom:18px;">
+    <div>
+      <span class="section-header-pill" style="background:#eef7ee;color:#1e7e34;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        توثيق المركز والعمليات
+      </span>
+      <h2 style="font-family:Cairo;font-weight:900;font-size:clamp(24px,3.2vw,32px);color:#0c2340;margin:4px 0 0;">
+        معرض الصور السريرية وغرف العمليات
+      </h2>
+      <p style="font-size:15px;color:#5a6e84;margin:6px 0 0;max-width:680px;">
+        جولة مصورة تشمل غرف العمليات المجهزة بأحدث الميكروسكوبات الجراحية، ومرافق المركز الطبي الحديثة بمستشفى ماكس.
+      </p>
+    </div>
+    <div style="font-size:13.5px;color:#7c91a8;font-weight:600;">
+      36 صورة سريرية
+    </div>
+  </div>
+
+  <div id="photos-grid" class="gallery-grid">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-100.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-100.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-102.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-102.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-102.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-102.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-103.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-103.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-103.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-103.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-104.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-104.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-104.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-104.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-105.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-105.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-105.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-105.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-106.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-106.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-106.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-106.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-107.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-107.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-107.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-107.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-108.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-108.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-108.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-108.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-111.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-111.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-111.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-111.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-112.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-112.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-112.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-112.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-55.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-55.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-55.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-55.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-56.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-56.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-56.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-56.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-57.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-57.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-57.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-57.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-58.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-58.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-58.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-58.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-59.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-59.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-59.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-59.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-61.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-61.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-61.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-61.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-62.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-62.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-62.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-62.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-63.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-63.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-63.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-63.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-64.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-64.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-64.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-64.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-65.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-65.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-65.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-65.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-66.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-66.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-66.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-66.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-67.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-67.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-67.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-67.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-68.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-68.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-68.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-68.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-69.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-69.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-69.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-69.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-70.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-70.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-70.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-70.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-71.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-71.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-71.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-71.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-76.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-76.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-76.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-76.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-77.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-77.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-77.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-77.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-78.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-78.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-78.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-78.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-79.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-79.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-79.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-79.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-80.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-80.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-80.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-80.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-81.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-81.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-81.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-81.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-82.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-82.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-82.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-82.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-83.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-83.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-83.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-83.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-84.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-84.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-84.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-84.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-85.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-85.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-85.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-85.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-86.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-86.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-86.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-86.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-87.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-87.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-87.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-87.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-88.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-88.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-88.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-88.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-89.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-89.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-89.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-89.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-90.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-90.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-90.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-90.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-91.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-91.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-91.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-91.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-92.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-92.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-92.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-92.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-93.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-93.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-93.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-93.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-94.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-94.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-94.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-94.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-95.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-95.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-95.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-95.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-96.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-96.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-96.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-96.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
         </div>
-        <div class="gal-item" onclick="openLightbox('uploads\PHOTO-2026-09-14-10-26-97.jpg')">
-            <img src="uploads\PHOTO-2026-09-14-10-26-97.jpg" alt="معرض الصور" loading="lazy">
+        <div class="gal-item" onclick="openLightbox('uploads/PHOTO-2026-09-14-10-26-97.jpg')">
+            <img src="uploads/PHOTO-2026-09-14-10-26-97.jpg" alt="معرض الصور" loading="lazy">
             <div class="gal-overlay">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
@@ -532,20 +725,94 @@
   </div>
 
   <div class="lightbox" id="lightbox">
-    <div class="lightbox-close" onclick="closeLightbox()">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="lightbox-content-box">
+      <div class="lightbox-close" onclick="closeLightbox()" title="إغلاق">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </div>
+      <img id="lightbox-img" src="" alt="عرض مكبر">
+      <video id="lightbox-video" controls playsinline style="display:none;"></video>
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+      <div id="lightbox-subcaption" class="lightbox-subcaption">الدكتور أرون ساروهـا — جراحة المخ والأعصاب والعمود الفقري</div>
     </div>
-    <img id="lightbox-img" src="" alt="">
   </div>
 
   <script>
-    function openLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('lightbox').classList.add('active');
+    function openLightbox(src, type, caption) {
+      type = type || 'image';
+      caption = caption || 'معرض الدكتور أرون ساروهـا';
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const vid = document.getElementById('lightbox-video');
+      const cap = document.getElementById('lightbox-caption');
+      
+      if (type === 'video') {
+        img.style.display = 'none';
+        vid.style.display = 'block';
+        vid.src = src;
+        vid.play().catch(function() {});
+      } else {
+        if (vid) {
+          vid.pause();
+          vid.removeAttribute('src');
+          vid.style.display = 'none';
+        }
+        img.style.display = 'block';
+        img.src = src;
+      }
+      
+      if (cap) cap.textContent = caption;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
+
     function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
+      const lb = document.getElementById('lightbox');
+      const vid = document.getElementById('lightbox-video');
+      if (vid) {
+        vid.pause();
+        vid.removeAttribute('src');
+        vid.load();
+      }
+      lb.classList.remove('active');
+      document.body.style.overflow = '';
     }
+
+    function filterGallery(type, btn) {
+      document.querySelectorAll('.gal-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      if (btn) btn.classList.add('active');
+      
+      const videoSection = document.getElementById('videos-section');
+      const photoGrid = document.getElementById('photos-grid');
+      const photoHeader = document.getElementById('photos-header');
+      
+      if (type === 'all') {
+        if (videoSection) videoSection.style.display = 'block';
+        if (photoGrid) photoGrid.style.display = 'grid';
+        if (photoHeader) photoHeader.style.display = 'flex';
+      } else if (type === 'videos') {
+        if (videoSection) {
+          videoSection.style.display = 'block';
+          videoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        if (photoGrid) photoGrid.style.display = 'none';
+        if (photoHeader) photoHeader.style.display = 'none';
+      } else if (type === 'photos') {
+        if (videoSection) videoSection.style.display = 'none';
+        if (photoGrid) photoGrid.style.display = 'grid';
+        if (photoHeader) {
+          photoHeader.style.display = 'flex';
+          photoHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
   </script>
 <!-- CTA -->
   <section style="padding:80px 24px;background:linear-gradient(135deg,#0e3a66,#0c2340);color:#fff;text-align:center;">
